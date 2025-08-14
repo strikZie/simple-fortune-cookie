@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: fortune-backend
-        image: <Image>
+        image: ghcr.io/strikzie/slow-and-steady-wins-the-race:latest
         ports:
           - containerPort: 9000
         resources: {}

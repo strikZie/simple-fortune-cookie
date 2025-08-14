@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: fortune-frontend
-        image: <Image>
+        image: ghcr.io/strikzie/fortune-favors-the-bold:latest
         ports:
           - containerPort: 8080
         env:
