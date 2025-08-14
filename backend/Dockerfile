@@ -6,9 +6,10 @@ RUN go build -o .
 
 FROM debian:bookworm-slim
 
-WORKDIR /app
 COPY --from=builder . .
 
-EXPOSE 8080
+WORKDIR /app
 
-CMD ["./frontend.exe"]
+EXPOSE 9000
+
+CMD ["./backend"]
