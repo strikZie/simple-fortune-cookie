@@ -3,10 +3,10 @@ kind: Service
 metadata:
   name: backend-service
   labels:
-    app: backend-deployment
+    app: backend
 spec:
   selector:
-    app: backend-deployment
+    app: backend
   ports:
     - protocol: TCP
       port: 9000
