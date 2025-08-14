@@ -11,4 +11,4 @@ COPY --from=builder . .
 
 EXPOSE 9000
 
-CMD ["./backend.exe"]
+CMD ["./backend"]
