@@ -18,5 +18,17 @@ services:
     networks:
       - connection
 
+  tester:
+    image: curlimages/curl:8.1.2
+    depends_on:      
+      - frontend
+    entrypoint: >
+      sh -c "
+        echo 'Waiting for frontend...';
+        sleep 5;
+        curl -f http://frontend:8080/healthz || exit 1"
+    networks:
+      - connection
+
 networks:
   connection:
