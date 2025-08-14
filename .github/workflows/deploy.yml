@@ -4,8 +4,6 @@ on:
   push:
     branches:
       - main
-      - dev
-      - staging
   workflow_dispatch:
 
 jobs:
@@ -22,16 +20,6 @@ jobs:
     - name: Debug kubeconfig
       run: |
         cat kubeconfig
-    - name: Set target namespace
-      id: env
-      run: |
-        case "${GITHUB_REF##*/}" in
-          main) ENV=production ;;
-          staging) ENV=staging ;;
-          dev) ENV=development ;;
-          *) ENV=development ;; # fallback
-        esac
-        echo "env=$ENV" >> "$GITHUB_OUTPUT"
 
     - name: Deploy to Kubernetes
       run: |
