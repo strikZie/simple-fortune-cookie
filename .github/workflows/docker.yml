@@ -23,20 +23,20 @@ jobs:
 
     - name: Build frontend Docker image
       run: |
-        IMAGE_NAME=ghcr.io/strikzie/simple-fortune-cookie:latest
+        IMAGE_NAME=ghcr.io/strikzie/fortune-favors-the-bold:latest
         docker build -t $IMAGE_NAME ./frontend
 
     - name: Push frontend Docker image
       run: |
-        IMAGE_NAME=ghcr.io/strikzie/simple-fortune-cookie:latest
+        IMAGE_NAME=ghcr.io/strikzie/fortune-favors-the-bold:latest
         docker push $IMAGE_NAME
 
     - name: Build backend Docker image
       run: |
-        IMAGE_NAME=ghcr.io/strikzie/simple-fortune-cookie:latest
+        IMAGE_NAME=ghcr.io/strikzie/slow-and-steady-wins-the-race:latest
         docker build -t $IMAGE_NAME ./backend
 
     - name: Push backend Docker image
       run: |
-        IMAGE_NAME=ghcr.io/strikzie/simple-fortune-cookie:latest
+        IMAGE_NAME=ghcr.io/strikzie/slow-and-steady-wins-the-race:latest
         docker push $IMAGE_NAME
