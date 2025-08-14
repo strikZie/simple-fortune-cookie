@@ -21,7 +21,9 @@ jobs:
     - name: Restore kubeconfig
       run: |
         echo "${{ secrets.KUBECONFIG }}" | base64 -d > kubeconfig
-
+    - name: Debug kubeconfig
+      run: |
+        cat kubeconfig
     - name: Set target namespace
       id: env
       run: |
