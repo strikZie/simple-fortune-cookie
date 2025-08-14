@@ -20,4 +20,7 @@ spec:
         image: ghcr.io/strikzie/slow-and-steady-wins-the-race:latest
         ports:
           - containerPort: 9000
+        env:
+          - name: REDIS_DNS
+            value: redis-service
         resources: {}
