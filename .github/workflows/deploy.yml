@@ -6,8 +6,6 @@ on:
       - main
       - dev
       - staging
-  pull_request:
-    branches: main
   workflow_dispatch:
 
 jobs:
