@@ -25,15 +25,16 @@ services:
       - connection
 
   tester:
-    image: curlimages/curl:8.8.0
-    depends_on:
+    image: curlimages/curl:8.1.2
+    depends_on:      
       - frontend
+    entrypoint: >
+      sh -c "
+        echo 'Waiting for frontend...';
+        sleep 5;
+        curl -f http://frontend:8080/healthz || exit 1"
     networks:
       - connection
-    volumes:
-      - ./test-app.sh:/test-app.sh:ro
-    entrypoint: ["sh", "/test-app.sh", "http://frontend:8080/healthz"]
-
 
 networks:
   connection:
