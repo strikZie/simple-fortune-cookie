@@ -1,0 +1,36 @@
+name: Deploy to Kubernetes
+
+on:
+  push:
+    branches:
+      - main
+      - dev
+      - staging
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Restore kubeconfig
+      run: |
+        echo "${{ secrets.KUBECONFIG }}" | base64 -d > kubeconfig
+
+    - name: Set target namespace
+      id: env
+      run: |
+        case "${GITHUB_REF##*/}" in
+          main) ENV=production ;;
+          staging) ENV=staging ;;
+          dev) ENV=development ;;
+          *) ENV=development ;; # fallback
+        esac
+        echo "env=$ENV" >> "$GITHUB_OUTPUT"
+
+    - name: Deploy to Kubernetes
+      run: |
+        kubectl --kubeconfig kubeconfig apply -f k8s/${{ steps.env.outputs.env }}/
