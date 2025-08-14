@@ -8,7 +8,8 @@ on:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
-
+  workflow_dispatch:
+    
 jobs:
 
   build:
@@ -22,7 +23,15 @@ jobs:
         go-version: '1.20'
 
     - name: Build
-      run: go build -v ./...
+      run: |
+        cd frontend
+        go build -v
 
     - name: Test
-      run: go test -v ./...
+      run: go test -v
+
+    - name: Build Backend
+      run: |
+        cd ..
+        cd backend
+        go build -v
