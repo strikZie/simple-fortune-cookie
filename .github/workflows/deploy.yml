@@ -1,0 +1,26 @@
+name: Deploy to Kubernetes
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Restore kubeconfig
+      run: |
+        echo "${{ secrets.KUBE_CONFIG }}" | base64 -d > kubeconfig
+    - name: Debug kubeconfig
+      run: |
+        cat kubeconfig
+
+    - name: Deploy to Kubernetes
+      run: |
+        kubectl --kubeconfig kubeconfig apply -f manifests/
