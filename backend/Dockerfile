@@ -6,8 +6,9 @@ RUN go build -o .
 
 FROM debian:bookworm-slim
 
-WORKDIR /app
 COPY --from=builder . .
+
+WORKDIR /app
 
 EXPOSE 9000
 
