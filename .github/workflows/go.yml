@@ -28,10 +28,11 @@ jobs:
         go build -v
 
     - name: Test
-      run: go test -v
+      run: |
+        cd frontend
+        go test -v
 
     - name: Build Backend
       run: |
-        cd ..
         cd backend
         go build -v
