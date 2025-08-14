@@ -6,7 +6,7 @@ services:
       context: ./backend
       dockerfile: DockerfileBackend
     ports:
-      - "3000:3000"
+      - "9000:9000"
 
   frontend:
     build:
